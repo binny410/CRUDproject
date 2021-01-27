@@ -5,46 +5,148 @@
     <title>
         Using JSON Data
     </title>
+    <!-- Latest bootstrap compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 </head>
 
 <body>
+    <div class="col">
+        <h2> REGISTRATION PAGE</h2>
+        <div class="container-md  p-3 my-3 border">
 
-    <h3> Please Enter the requested data.</h3>
-    <form>
-        <label for="name">Name:</label>
-        <input type="text" id="name"><br><br>
-        <label for="city">City:</label>
-        <input type="text" id="city"><br><br>
-        <label for="country">Country:</label>
-        <input type="text" id="country"><br><br>
-        <button onclick="submitData()" id="submit" type="button"> Submit</button>
-    </form>
-
-
-    <h3> Table of the Entered Data.</h3>
-    <table>
-        <thead>
-            <tr>
-                <th> Name </th>
-                <th> City </th>
-                <th> Country</th>
-                <th> Delete/Edit</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!--
-            <tr>
-                <td> Binny </td>
-                <td> Cambridge </td>
-                <td> Canada</td>
-                <td> <button class="delete" onclick='deleteData(this);'>DELETE</button>
-                    <button class="edit">EDIT</button>
-                </td>
+            <p>Enter you details to get Nicholas Sparks's hand signed copy of "THE NOTEBOOK"</p>
+            <div class="form-group">
+                <form action="" class="was-validated">
+                    <div class="form-group">
+                        <h6>NAME:</h6>
+                        <input type="text" class="form-control" placeholder="Enter Name" id="name" required>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group">
+                        <h6>EMAIL:</h6>
+                        <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group">
+                        <h6>ADDRESS:</h6>
+                        <input type="text" class="form-control" placeholder="Enter Address" id="address" required>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <!--
+                    <div class="form-group">
+                        <label for="country">Country:</label>
+                        <input type="text" class="form-control" placeholder="Enter Country" id="country" required>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
 -->
-            <!--            </tr>-->
-        </tbody>
-    </table>
-</body></html>
+                    <h6>TYPE:</h6>
+                    <div class="form-check-inline">
+                        <label class="form-check-label" for="radio1">
+                            <input type="radio" class="form-check-input" id="radio1" name="ctype" value="Email Copy">Email copy
+                        </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label" for="radio2">
+                            <input type="radio" class="form-check-input" id="radio2" name="ctype" value="Mail Copy">Mail copy
+                        </label>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <h6>MESSAGE:</h6>
+                        <textarea class="form-control" rows="5" id="message" name="text" required></textarea>
+                    </div>
+                    <button onclick="submitData()" id="submit" class="btn btn-primary" type="button"> Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <h5> Registered Fans</h5>
+
+        <table>
+            <thead class="thead-light">
+                <tr>
+                    <th> NAME </th>
+                    <th> EMAIL </th>
+                    <th> ADDRESS </th>
+                    <th> COPY </th>
+                    <th> MESSAGE </th>
+                    <th> OPERATIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">EDIT ENTRY</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <h6>NAME:</h6>
+                            <input type="text" class="form-control" placeholder="Enter Name" id="Mname" required>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <h6>EMAIL:</h6>
+                            <input type="email" class="form-control" id="Memail" placeholder="Enter Email" name="email" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <h6>ADDRESS:</h6>
+                            <input type="text" class="form-control" placeholder="Enter Address" id="Maddress" required>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+
+                        <h6>TYPE:</h6>
+                        <div class="form-check-inline">
+                            <label class="form-check-label" for="radio1">
+                                <input type="radio" class="form-check-input" id="Mradio1" name="Mctype" value="Email Copy">Email copy
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <label class="form-check-label" for="radio2">
+                                <input type="radio" class="form-check-input" id="Mradio2" name="Mctype" value="Mail Copy">Mail copy
+                            </label>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                            <h6>MESSAGE:</h6>
+                            <textarea class="form-control" rows="5" id="Mmessage" name="text" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button onclick="submitData()" id="submitEdit" class="btn btn-success" data-dismiss="modal" type="button"> Save</button>
+
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<footer>
+    <p> © 2021 Made by Balpreet Kaur ♥️</p>
+</footer></html>

@@ -10,14 +10,16 @@ retrieveData = JSON.parse(fetchData);
 //Function to upload data after clicking submit button.
 function submitData() {
     //Edit function will work
-    if ($("#submit").hasClass('editing')) {
+    if ($("#submitEdit").hasClass('editing')) {
         //getting the index of editing line.
-        var z = $("#submit").attr('indexVal');
-        console.log(z)
+        var z = $("#submitEdit").attr('indexVal');
+        console.log(z);
         //getting values from local storage.
-        retrieveData[z].Name = $("#name").val();
-        retrieveData[z].City = $("#city").val();
-        retrieveData[z].Country = $("#country").val();
+        retrieveData[z].Name = $("#Mname").val();
+        retrieveData[z].Email = $("#Memail").val();
+        retrieveData[z].Address = $("#Maddress").val();
+        retrieveData[z].Copy = $("input:radio[name=Mctype]:checked").val();
+        retrieveData[z].Message = $("#Mmessage").val();
         localStorage.setItem('userData', JSON.stringify(retrieveData))
         location.reload();
     }
@@ -25,14 +27,18 @@ function submitData() {
     else {
 
         var inputName = $("#name").val();
-        var inputCity = $("#city").val();
-        var inputCountry = $("#country").val();
+        var inputEmail = $("#email").val();
+        var inputAddress = $("#address").val();
+        var inputCopy = $("input:radio[name=ctype]:checked").val()
+        var inputMessage = $("#message").val();
 
         //Creating object with user data.
         var userData = {
             "Name": inputName,
-            "City": inputCity,
-            "Country": inputCountry
+            "Email": inputEmail,
+            "Address": inputAddress,
+            "Copy": inputCopy,
+            "Message": inputMessage
         }
 
         //If there is no data stored in local storage  then retrieveData is empty array.
@@ -48,12 +54,13 @@ function submitData() {
         localStorage.setItem("userData", jsonData);
 
         //Displaying the entered data to the table.
-        $("tbody").append("<tr> <td> " + inputName + " </td> <td> " + inputCity + " </td> <td> " + inputCountry + "</td><td> <button class='delete'  onclick='deleteData(this);'>DELETE</button> <button class='edit' onclick='editData(this);'>EDIT</button></td></tr>")
+        $("tbody").append("<tr> <td> " + inputName + " </td> <td> " + inputEmail + " </td> <td> " + inputAddress + " </td><td> " + inputCopy + " </td> <td> " + inputMessage + "</td><td> <button class='delete btn btn-secondary'  onclick='deleteData(this);'>DELETE</button> <button class='edit btn btn-light' data-toggle='modal' data-target='#myModal' onclick='editData(this);'>EDIT</button></td></tr>")
 
         //Setting input fields to empty again.
         $("#name").val("");
-        $("#city").val("");
-        $("#country").val("");
+        $("#email").val("");
+        $("#address").val("");
+        $("#message").val("");
 
     }
 }
@@ -66,7 +73,7 @@ function getData() {
         n = retrieveData.length;
         for (var i = 0; i < n; i++) {
             console.log(retrieveData[i]);
-            $("tbody").append("<tr> <td > " + retrieveData[i].Name + " </td><td > " + retrieveData[i].City + " </td> <td> " + retrieveData[i].Country + "</td> <td> <button class = 'delete' onclick='deleteData(this);' >DELETE</button> <button class='edit' onclick='editData(this);'> EDIT</button> </td> </tr > ");
+            $("tbody").append("<tr> <td > " + retrieveData[i].Name + " </td> <td > " + retrieveData[i].Email + " </td><td > " + retrieveData[i].Address + " </td> <td > " + retrieveData[i].Copy + " </td> <td> " + retrieveData[i].Message + "</td> <td> <button class = 'delete btn btn-secondary' onclick='deleteData(this);' >DELETE</button> <button data-toggle='modal' data-target='#myModal' class='edit btn btn-light' onclick='editData(this);'> EDIT</button> </td> </tr > ");
         }
     }
 
@@ -87,18 +94,22 @@ function deleteData(e) {
 
 //Edit function
 function editData(e) {
+
     //add a class to the submit button in the form when clicked on the edit button.
-    $("#submit").addClass('editing');
+    $("#submitEdit").addClass('editing');
     //getting index of the row for editing.
     var y = ($(e).parents('tr').index())
     console.log("index of clicked button: " + y);
     console.log(retrieveData[y])
     //getting the edited row's value in the placeholder.
-    $("#name").val(retrieveData[y].Name);
-    $("#city").val(retrieveData[y].City);
-    $("#country").val(retrieveData[y].Country);
+    $("#Mname").val(retrieveData[y].Name);
+    $("#Memail").val(retrieveData[y].Email);
+    $("#Maddress").val(retrieveData[y].Address);
+    $("#Mcopy").val(retrieveData[y].Copy);
+    $("#Mmessage").val(retrieveData[y].Message);
 
     //adding a attribute in the submit value with ythe index of the clicked row.
     $("#submit").attr('indexVal', y);
+    $("#submitEdit").attr('indexVal', y);
 
 }
