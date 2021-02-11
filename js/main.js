@@ -45,15 +45,28 @@ function submitData() {
                 "Copy": inputCopy,
                 "Message": inputMessage
             }
-
+			//start
+//			var settings = {
+//  "url": " https://91051f8749b7.ngrok.io/validation",
+//  "method": "POST",
+//  "headers": {
+//	  "Content-Type":"application/jason"
+//	  },
+//"data": JSON.stringify(userData),
+//	};
+//$.ajax(settings).done(function (response) {
+//  console.log(response);
+//});
+//end
+			
             //If there is no data stored in local storage  then retrieveData is empty array.
             if (retrieveData == null) retrieveData = []
 
             //Adding fresh data to the retrieved data from local storage.
-            retrieveData.push(userData);
+         retrieveData.push(userData);
 
             //Stringifying all data to JSON format.
-            var jsonData = JSON.stringify(retrieveData);
+          var jsonData = JSON.stringify(retrieveData);
 
             //Adding the data to local storage.
             localStorage.setItem("userData", jsonData);
@@ -81,7 +94,7 @@ function getData() {
     } else {
         n = retrieveData.length;
         for (var i = 0; i < n; i++) {
-            console.log(retrieveData[i]);
+          //  console.log(retrieveData[i]);
             $("tbody").append("<tr> <td > " + retrieveData[i].Name + " </td> <td > " + retrieveData[i].Email + " </td><td > " + retrieveData[i].Address + " </td> <td > " + retrieveData[i].Copy + " </td> <td> " + retrieveData[i].Message + "</td> <td> <button class = 'delete btn btn-secondary' onclick='deleteData(this);' >DELETE</button> <button data-toggle='modal' data-target='#myModal' class='edit btn btn-light' onclick='editData(this);'> EDIT</button> </td> </tr > ");
         }
     }
